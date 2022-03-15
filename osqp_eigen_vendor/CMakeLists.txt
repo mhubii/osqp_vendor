@@ -7,7 +7,7 @@ find_package(osqp_vendor REQUIRED)
 find_package(eigen3_cmake_module REQUIRED)
 find_package(Eigen3 REQUIRED)
 
-set(git_tag "master")  # TODO: replace tag by v0.7.0 upon fix of https://github.com/robotology/osqp-eigen/issues/115
+set(git_tag "dev-header")  # TODO: replace tag by v0.7.0 upon fix of https://github.com/robotology/osqp-eigen/issues/115
 
 include(FetchContent)
 FetchContent_Declare(
@@ -19,13 +19,10 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(OsqpEigen)
 
 ament_export_targets(OsqpEigenVendorTargets HAS_LIBRARY_TARGET)
-ament_export_dependencies(osqp_vendor eigen3_cmake_module Eigen3 OsqpEigen)
-
-add_library(osqp_eigen_vendor INTERFACE)
-target_link_libraries(osqp_eigen_vendor INTERFACE OsqpEigen)
+ament_export_dependencies(osqp_vendor eigen3_cmake_module Eigen3)
 
 install(
-  TARGETS osqp_eigen_vendor 
+  TARGETS OsqpEigen
   EXPORT OsqpEigenVendorTargets
 )
 
